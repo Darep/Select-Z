@@ -1,5 +1,5 @@
 /*!
- * jQuery Selectionz v0.3.1
+ * jQuery Selectionz v0.3.2
  * Copyright (c) 2012-2013 ajk.fi and Solita Oy
  */
 
