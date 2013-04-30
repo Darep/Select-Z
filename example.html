@@ -7,6 +7,7 @@
     <style type="text/css">
         * { margin:0; padding:0; outline:0; }
         body {
+            background: #fff;
             font:13px/1.4 'Helvetica Neue', sans-serif;
             margin:10px auto;
             width:800px;
@@ -76,6 +77,15 @@
                     <option value="Two">Two</option>
                     <option value="Three">Three</option>
                     <option value="four">Quattro!</option>
+                </select>
+            </div>
+
+            <div>
+                <p>Different class, different look:</p>
+                <select name="select-nosync" class="example3">
+                    <option value="One">Yarr!</option>
+                    <option value="Two">Ninjas</option>
+                    <option value="Three">Vikings</option>
                 </select>
             </div>
 
@@ -188,6 +198,10 @@
         $('#check-1').selectionz();
         $('#label-1').selectionz();
         $('.radio').selectionz();
+
+        $('.example3').selectionz({
+            extraClass: 'secondary'
+        });
     </script>
 
 </body>

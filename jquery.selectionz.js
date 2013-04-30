@@ -1,6 +1,6 @@
 /*!
  * jQuery Selectionz v0.3.1
- * Copyright (c) 2012 Antti-Jussi Kovalainen (ajk.im)
+ * Copyright (c) 2012-2013 ajk.fi and Solita Oy
  */
 
 ;(function ($, window, document, undefined) {
@@ -9,7 +9,7 @@
     var radios = {};
     var dropdown = $('<div id="sz-dropdown" />');
 
-    function showDropdown(x, y, min_width, options) {
+    function showDropdown(x, y, min_width, extraClass, options) {
         dropdown.css({
             position: 'absolute',
             left: x,
@@ -17,6 +17,12 @@
             visibility: 'visible',
             minWidth: min_width
         });
+
+        // Re-set CSS class
+        dropdown[0].className = '';
+        if (extraClass && extraClass !== '') {
+            dropdown[0].className = extraClass;
+        }
 
         dropdown.html(options).show();
         return options;
@@ -41,7 +47,7 @@
 
             var element = $(this);
             if (element.is('select') === true) {
-                styleSelect(element);
+                styleSelect(element, options_in);
             }
             else if (element.is('input[type=checkbox]') === true) {
                 styleCheckbox(element, options_in);
@@ -57,16 +63,12 @@
             }
         });
 
-        function styleSelect($select) {
+        function styleSelect($select, args_in) {
+            var args = $.extend({
+                extraClass: ''
+            }, args_in);
+
             $select.hide();
-
-            var orig_options = $select.children('option'),
-                options = null,
-                current = orig_options.filter('[selected]');
-
-            if (current.length === 0) {
-                current = $select.find('option').first();
-            }
 
             // elements
             var sel_el         = $('<div class="selectionz" />'),
@@ -75,13 +77,24 @@
                 options_outer  = $('<div class="sz-options-outer" />'),
                 options_list   = $('<ul class="sz-options" />');
 
+            if (args.extraClass !== '') {
+                sel_el.addClass(args.extraClass);
+            }
+
+            var options,
+                orig_options = $select.children('option'),
+                current = orig_options.filter('[selected]'),
+                zindex = 1;
+
+            if (current.length === 0) {
+                current = $select.find('option').first();
+            }
+
             createElements();
             hookEvents();
 
             allSelects.push(sel_el);
             sel_el.attr('tabindex', allSelects.length);
-
-            var zindex = 1;
 
             function openDropdown() {
                 //options_outer.toggle();
@@ -99,7 +112,7 @@
                     var y = pos.top + toggle.outerHeight();
                     var min_width = toggle.outerWidth();
 
-                    options_outer = showDropdown(x, y, min_width, options_outer);
+                    options_outer = showDropdown(x, y, min_width, args.extraClass, options_outer);
                     options_outer.toggleClass('open');
                     bindOptions( options_outer.find('> ul > li') );
                 }
@@ -216,14 +229,11 @@
          */
         function styleCheckbox(element, options_in) {
             var options = $.extend({
-                hideControl: false, // hides the control or radio control
-                className: 'sz-control',
+                extraClass: 'sz-control',
                 classNameChecked: 'c_on'
             }, options_in);
 
-            var $this = element;
-            var label = null;
-            var control = null;
+            var label, control, $this = element;
 
             if ($this.is('label')) {
                 label = $this;
@@ -247,12 +257,14 @@
                 return;
             }
 
-            label.addClass(options.className);
-
-            if (options.hideControl) {
-                //control.css({
-
-                //});
+            // Legacy support, in v0.3.1 and below, this was in use
+            if (options.className) {
+                label.addClass(options.className);
+            } else {
+                label.addClass('sz-control');
+                if (options.extraClass) {
+                    label.addClass(options.extraClass);
+                }
             }
 
             // radio button specific stuff!

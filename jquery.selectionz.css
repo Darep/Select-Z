@@ -1,7 +1,8 @@
+/*
+ * Example theme for jQuery Selectionz
+ */
 
-/* jQuery Selectionz Theme
------------------------------------------------------------------------------ */
-/* REQUIRED: */
+/* REQUIRED STYLES: */
 #sz-dropdown {
     z-index:10000;
 }
@@ -9,7 +10,8 @@
     z-index:10001;
 }
 
-/* dropdown */
+
+/* dropdown theme */
 .selectionz {
     font-size:11px;
     position: relative;
@@ -83,7 +85,22 @@
 }
 
 
-/* checkboxes & radios */
+/* Different class, different style */
+.secondary .sz-toggle {
+    background: #fff;
+    border-color: #8c94b5;
+}
+.secondary .sz-options li.current {
+    background: #17c;
+    color: #fff;
+}
+.secondary .sz-options li:hover {
+    background: #3ad;
+    color: #fff;
+}
+
+
+/* styles for checkboxes & radios */
 .sz-control {
     background:#ddd;
     border:1px solid #888;
