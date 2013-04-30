@@ -25,7 +25,7 @@ You can pass the `selectz()` function some options, if you want to:
 		extraClass: 'secondary-select'
 	});
 
-See [examples.html](https://rawgithub.com/Darep/Select-Z/master/examples.html)
+See [example.html](http://rawgithub.com/Darep/Select-Z/master/example.html)
 for simple examples on how it works.
 
 Supports IE7+ and most (if not all) modern browsers.
