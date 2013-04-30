@@ -1,25 +1,51 @@
-Selectionz
-==========
+# Select Z
 
-Selectionz is a jQuery plugin for creating stylized dropdown, checkbox and
-radio button elements. It hooks into the &lt;select&rt; elements you choose,
-hides them and creates a bunch of HTML elements with descriptivie CSS classes,
-so you can style them and create any look you want!
+Select Z is a jQuery plugin for creating styled dropdowns, checkboxes and
+radio buttons.
 
-Selectionz alsos supports "syncing" of selection elements: if you have select
-boxes with the same elements, changing the selection will also change the
-selection on the other select box.
+What does Select Z do:
 
-See [examples.html](https://rawgithub.com/solita/Selectionz/master/index.html)
+1. Hooks onto the elements you choose
+2. Hides the elements
+3. Creates a bunch of HTML elements with descriptive CSS classes
+4. Hooks the events so everything works
+5. ...let's you style the new elements and create any look you want
+
+## Usage
+
+Add the `jquery.selectz.js` and some CSS styles (see `jquery.selectz.css` for examples) to your project.
+
+Then turn a &lt;select> element into a more easily styled one:
+
+	$('.styled-select').selectz();
+
+You can pass the `selectz()` function some options, if you want to:
+
+	$('.styled-select').selectz({
+		extraClass: 'secondary-select'
+	});
+
+See [examples.html](https://rawgithub.com/Darep/Select-Z/master/examples.html)
 for simple examples on how it works.
 
-Support: IE7+, Chrome, Firefox and Opera.
+Supports IE7+ and most (if not all) modern browsers.
+
+## Syncing
+
+Select Z also supports "syncing" of selection elements: if you have multiple
+select boxes with a list of same options, changing one selection can also
+change the selection on the other select box.
+
+Sync two selections by simple doing this:
+
+	var synced_selects = $('.synced-select');  // there needs to be atleast two
+	synced_selects.selectz().syncSelections();
 
 ### License
 
 MIT License
 
-Copyright (C) 2012-2013 Solita Oy
+Copyright (C) 2012-2013 ajk.fi and Solita Oy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

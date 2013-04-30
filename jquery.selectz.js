@@ -1,5 +1,5 @@
 /*!
- * jQuery Selectionz v0.3.2
+ * jQuery Select Z v0.3.2
  * Copyright (c) 2012-2013 ajk.fi and Solita Oy
  */
 
@@ -37,12 +37,12 @@
     });
 
     $(document).click(function () {
-        $('.selectionz').removeClass('open');
+        $('.selectz').removeClass('open');
         hideDropdown();
     });
 
 
-    $.fn.selectionz = function (options_in) {
+    $.fn.selectz = function (options_in) {
         return this.each(function () {
 
             var element = $(this);
@@ -71,7 +71,7 @@
             $select.hide();
 
             // elements
-            var sel_el         = $('<div class="selectionz" />'),
+            var sel_el         = $('<div class="selectz" />'),
                 toggle         = $('<a class="sz-toggle" />'),
                 label          = $('<span class="label"></span>'),
                 options_outer  = $('<div class="sz-options-outer" />'),
@@ -104,7 +104,7 @@
                     // store old z-index
                     //zindex = sel_el.css('z-index');
 
-                    // set crazy high z-index so other selectionz don't get in the way
+                    // set crazy high z-index so other selectz don't get in the way
                     //sel_el.css('z-index', 10001);
 
                     var pos = sel_el.offset();
@@ -142,10 +142,10 @@
                 });
 
                 sel_el
-                    .bind('focus.selectionz', function () {
+                    .bind('focus.selectz', function () {
                         sel_el.addClass('focus');
                     })
-                    .bind('blur.selectionz', function () {
+                    .bind('blur.selectz', function () {
                         // set some delay for better UX! lol. also, to fix the "dumb" event order in IE
                         sel_el.removeClass('focus');
                     });
